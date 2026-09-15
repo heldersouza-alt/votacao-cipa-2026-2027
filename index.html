@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Votação CIPA 2026</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- TELA DE VOTAÇÃO -->
+  <div id="votacao-section" class="section">
+    <h1>Votação CIPA 2026</h1>
+    <form id="voteForm">
+      <label>Nome Completo:</label>
+      <input type="text" id="nome" required placeholder="Digite seu nome completo">
+
+      <label>CPF:</label>
+      <input type="text" id="cpf" required maxlength="11" placeholder="Somente números">
+
+      <label>Selecione sua Unidade:</label>
+      <div id="unidade-options">
+        <label><input type="checkbox" name="unidadeEleitor" value="CCO / MOGI-ALPHA"> CCO / MOGI-ALPHA</label>
+        <label><input type="checkbox" name="unidadeEleitor" value="Indaiatuba"> Indaiatuba</label>
+        <label><input type="checkbox" name="unidadeEleitor" value="São Carlos"> São Carlos</label>
+        <label><input type="checkbox" name="unidadeEleitor" value="Mogi Bravo"> Mogi Bravo</label>
+      </div>
+
+      <div id="candidatos-container" class="hidden">
+        <label>Escolha o Candidato:</label>
+        <table id="tabelaCandidatos" border="1">
+          <thead>
+            <tr>
+              <th>Selecionar</th>
+              <th>Nome</th>
+              <th>Apelido</th>
+              <th>Unidade</th>
+              <th>Setor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Preenchido dinamicamente via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <input type="hidden" id="candidato" required>
+      <button type="submit">Votar</button>
+      <button type="reset">Limpar Campos</button>
+    </form>
+  </div>
+
+  <!-- LOGIN DE ADMIN -->
+  <div id="login-section" class="section">
+    <h2>Área Administrativa</h2>
+    <input type="password" id="adminPassword" placeholder="Digite a senha de administrador">
+    <button type="button" onclick="loginAdmin()">Entrar</button>
+  </div>
+
+  <!-- TELA DE ADMINISTRAÇÃO -->
+  <div id="admin-section" class="section hidden">
+    <h1>Administração CIPA 2026</h1>
+    <button type="button" onclick="sairAdmin()">Sair da Administração</button>
+
+    <h3>Cadastrar Candidato</h3>
+    <input type="text" id="novoCandidato" placeholder="Nome do candidato">
+    <input type="text" id="apelidoCandidato" placeholder="Apelido">
+    <input type="text" id="unidadeCandidato" placeholder="Unidade">
+    <input type="text" id="setorCandidato" placeholder="Setor">
+    <button type="button" onclick="adicionarCandidato()">Adicionar</button>
+
+    <h3>Excluir Candidato</h3>
+    <select id="candidatoExcluir"></select>
+    <button type="button" onclick="excluirCandidato()">Excluir</button>
+
+    <h3>Gerenciar CPFs</h3>
+    <button type="button" onclick="limparCPFs()" class="btn-danger">Limpar CPFs Votantes</button>
+
+    <h3>Lista de Candidatos e Apuração</h3>
+    <button type="button" onclick="carregarApuracao()" style="margin-bottom: 15px;">Atualizar Apuração</button>
+    <div id="statusApuracao" style="margin-bottom: 10px; font-style: italic;"></div>
+    <ul id="listaCandidatos"></ul>
+  </div>
+  
+  <!-- MODAL DE CONFIRMAÇÃO DE VOTO -->
+  <div id="modalSucesso" class="modal hidden">
+    <div class="modal-content">
+      <img id="imgSucesso" src="sucesso_voto.png" alt="Voto Registrado com Sucesso!" onerror="this.style.display='none'; document.getElementById('fallbackText').style.display='block';">
+      <div id="fallbackText" style="display: none; font-size: 20px; font-weight: bold; color: #2ecc71;">
+        ✔ Voto registrado e enviado para a planilha com sucesso!
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
