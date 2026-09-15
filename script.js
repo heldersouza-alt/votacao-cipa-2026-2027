@@ -12,46 +12,30 @@ function tocarSomUrna() {
 
 // ----- LISTA FIXA DE CANDIDATOS -----
 const CANDIDATOS_FIXOS = [
-  // MOGI-ALPHA
-  { nome: "MARIA COELHO DE OLIVEIRA", apelido: "MARIA", unidade: "CCO / MOGI-ALPHA", setor: "ADMINISTRATIVO" },
-
-  { nome: "LUIZ FERNANDO DONIZETI DE FREITAS", apelido: "CAZÃO", unidade: "CCO / MOGI-ALPHA", setor: "MARKETING" },
-
-  { nome: "SERGIO JANUÁRIO DE SOUSA JUNIOR", apelido: "", unidade: "CCO / MOGI-ALPHA", setor: "LOGÍSTICA" },
-
-  { nome: "JEFFERSON DANIEL DA SILVA", apelido: "", unidade: "CCO / MOGI-ALPHA", setor: "ESTOQUE" },
-
-  { nome: "HENDERSON APARECIDO TOMAZ FERREIRA", apelido: "HENDERSON TOMAZ", unidade: "CCO / MOGI-ALPHA", setor: "INSTALAÇÃO" },
+  // CCO / MOGI-ALPHA / MOGI-BRAVO
+  { nome: "MARIA COELHO DE OLIVEIRA", apelido: "MARIA", unidade: "CCO / MOGI-ALPHA / MOGI-BRAVO", setor: "ADMINISTRATIVO" },
+  { nome: "LUIZ FERNANDO DONIZETI DE FREITAS", apelido: "CAZÃO", unidade: "CCO / MOGI-ALPHA / MOGI-BRAVO", setor: "MARKETING" },
+  { nome: "SERGIO JANUÁRIO DE SOUSA JUNIOR", apelido: "", unidade: "CCO / MOGI-ALPHA / MOGI-BRAVO", setor: "LOGÍSTICA" },
+  { nome: "JEFFERSON DANIEL DA SILVA", apelido: "", unidade: "CCO / MOGI-ALPHA / MOGI-BRAVO", setor: "ESTOQUE" },
+  { nome: "HENDERSON APARECIDO TOMAZ FERREIRA", apelido: "HENDERSON TOMAZ", unidade: "CCO / MOGI-ALPHA / MOGI-BRAVO", setor: "INSTALAÇÃO" },
+  { nome: "GABRIEL HENRIQUE ANDRADE MIGUEL", apelido: "BIEL", unidade: "CCO / MOGI-ALPHA / MOGI-BRAVO", setor: "INSTALAÇÃO" },
+  { nome: "PEDRO HENRIQUE RIBEIRO DE BRITO", apelido: "", unidade: "CCO / MOGI-ALPHA / MOGI-BRAVO", setor: "INSTALAÇÃO" },
+  { nome: "PAULO HENRIQUE DOS SANTOS", apelido: "PAULO", unidade: "CCO / MOGI-ALPHA / MOGI-BRAVO", setor: "INSTALAÇÃO" },
+  { nome: "LUCAS NASCIMENTO DA SILVA", apelido: "BAHIA", unidade: "CCO / MOGI-ALPHA / MOGI-BRAVO", setor: "INSTALAÇÃO" },
 
   // INDAIATUBA
   { nome: "JOÃO VITOR APARECIDO SOLEDADE", apelido: "", unidade: "INDAIATUBA", setor: "INSTALAÇÃO" },
-  
   { nome: "LEONARDO PAURA ALEXANDRE", apelido: "", unidade: "INDAIATUBA", setor: "INSTALAÇÃO" },
-  
   { nome: "RUAN LIMA DIAS", apelido: "", unidade: "INDAIATUBA", setor: "VISTORIA" },
-  
   { nome: "PABLO FABRÍCIO CAVALCANTE DA COSTA", apelido: "", unidade: "INDAIATUBA", setor: "INSTALAÇÃO" },
-  
   { nome: "MAICON CRIATIAN DA SILVA", apelido: "ZÉ", unidade: "INDAIATUBA", setor: "VISTORIA" },
-   
-   { nome: "RUAN XAVIER", apelido: "RUANZINHO", unidade: "INDAIATUBA", setor: "VISTORIA"},
-  
-    { nome: "LUIS MIGUEL LIMA OLIVEIRA", apelido: "LUIS MIGUEL", unidade: "INDAIATUBA", setor: "VISTORIA"},
-  
-      { nome: "GABRIEL RIBEIRO CATALANO", apelido: "CATALANO", unidade: "INDAIATUBA", setor: "ESTOQUE"},
-  
-  
+  { nome: "RUAN XAVIER", apelido: "RUANZINHO", unidade: "INDAIATUBA", setor: "VISTORIA" },
+  { nome: "LUIS MIGUEL LIMA OLIVEIRA", apelido: "LUIS MIGUEL", unidade: "INDAIATUBA", setor: "VISTORIA" },
+  { nome: "GABRIEL RIBEIRO CATALANO", apelido: "CATALANO", unidade: "INDAIATUBA", setor: "ESTOQUE" },
 
   // SÃO CARLOS
-  { nome: "ALESSANDO MIGUEL DA SILVA", apelido: "ALE", unidade: "SÃO CARLOS", setor: "INSTALAÇÃO"},
-  
-  { nome: "MIGUEL SALVADOR", apelido: "", unidade: "SÃO CARLOS", setor: "INSTALAÇÃO"},
-
-  // MOGI BRAVO
-  { nome: "GABRIEL HENRIQUE ANDRADE MIGUEL", apelido: "BIEL", unidade: "MOGI BRAVO", setor: "INSTALAÇÃO" },
-  { nome: "PEDRO HENRIQUE RIBEIRO DE BRITO", apelido: "", unidade: "MOGI BRAVO", setor: "INSTALAÇÃO" },
-  { nome: "PAULO HENRIQUE DOS SANTOS", apelido: "PAULO", unidade: "MOGI BRAVO", setor: "INSTALAÇÃO" },
-  { nome: "LUCAS NASCIMENTO DA SILVA", apelido: "BAHIA", unidade: "MOGI BRAVO", setor: "INSTALAÇÃO" }
+  { nome: "ALESSANDO MIGUEL DA SILVA", apelido: "ALE", unidade: "SÃO CARLOS", setor: "INSTALAÇÃO" },
+  { nome: "MIGUEL SALVADOR", apelido: "", unidade: "SÃO CARLOS", setor: "INSTALAÇÃO" }
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -273,7 +257,8 @@ function carregarCandidatos() {
   if (selectExcluir) {
     selectExcluir.innerHTML = "<option value='' disabled selected>Selecione</option>";
     candidatosAll.forEach(c => {
-      const option = document.value = c.nome;
+      const option = document.createElement("option");
+      option.value = c.nome;
       option.textContent = c.nome;
       selectExcluir.appendChild(option);
     });
@@ -294,5 +279,7 @@ function escapeHtml(text) {
       "`": "&#x60;",
       "=": "&#x3D;"
     }[s]);
+  });
+}
   });
 }
