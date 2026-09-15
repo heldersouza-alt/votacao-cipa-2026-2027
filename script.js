@@ -281,5 +281,4 @@ function escapeHtml(text) {
     }[s]);
   });
 }
-  });
 }
