@@ -214,11 +214,24 @@ function carregarCandidatos() {
   const selectExcluir = document.getElementById("candidatoExcluir");
 
   const selectedUnitEl = document.querySelector('input[name="unidadeEleitor"]:checked');
-  const unidadeSelecionada = selectedUnitEl ? selectedUnitEl.value.trim().toLowerCase() : "";
+  
+  // Trata e limpa caracteres invisíveis de espaço (\u00A0 e múltiplos espaços)
+  const unidadeSelecionada = selectedUnitEl 
+    ? selectedUnitEl.value.replace(/\u00A0/g, ' ').replace(/\s+/g, ' ').trim().toLowerCase() 
+    : "";
 
   let candidatosFiltrados = candidatosAll.filter(c => c && c.nome);
+
   if (unidadeSelecionada) {
-    candidatosFiltrados = candidatosFiltrados.filter(c => (c.unidade || "").toString().trim().toLowerCase() === unidadeSelecionada);
+    candidatosFiltrados = candidatosFiltrados.filter(c => {
+      const unidadeCandidato = (c.unidade || "")
+        .toString()
+        .replace(/\u00A0/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .toLowerCase();
+      return unidadeCandidato === unidadeSelecionada;
+    });
   }
 
   if (tabelaBody) {
